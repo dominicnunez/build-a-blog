@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Add A Post
+Add A Post | There's That Blog
 {% endblock %}
 
 {% block content %}
@@ -12,7 +12,7 @@ Add A Post
                 <td><label for="title">Title</label></td>
             </tr>
             <tr>
-                <td><input type="text" id="title" name="title" {% if title %}value="{{title}}"{% endif %}></td>
+                <td><input type="text" id="title" name="title" {% if title %}value="{{title}}" {% endif %}></td>
             </tr>
             <tr>
                 <td>
@@ -25,11 +25,14 @@ Add A Post
                 <td><label><input type="radio" name="goto" value="entry">Go to Entry</label></td>
             </tr>
             <tr>
-                <td><a href="/blog"><button id="cancel-btn">Cancel</button></a></td>
+
                 <td><button id="reset-btn" type="reset">Reset</button></td>
                 <td><button id="submit-btn" type="submit">Submit</button></td>
             </tr>
         </table>
     </form>
+
+<div>
+    <a href="/blog"><button id="cancel-btn">Cancel</button></a></div>
 </div>
 {% endblock %}

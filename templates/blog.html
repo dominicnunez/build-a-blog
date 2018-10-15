@@ -5,17 +5,21 @@ There's That Blog
 {% endblock %}
 
 {% block content %}
-
+{% if posts %}
 {% for entry in posts %}
 <div class="entry">
   <table>
     <caption>{{entry.pub_date}}</caption>
-    <tr>
-      <td>{{entry.title}}</td>
-      <td>{{entry.body}}</td>
-    </tr>
+    <tbody>
+      <tr>
+        <td>{{entry.title}}</td>
+      </tr>
+      <tr>
+        <td>{{entry.body}}</td>
+      </tr>
+    </tbody>
   </table>
 </div>
 {% endfor %}
-
+{% endif %}
 {% endblock %}

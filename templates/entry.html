@@ -1,17 +1,25 @@
 {% extends "base.html" %}
 
 {% block title %}
-{{title}}
+{% if entry %}
+{{entry.title}} | There's That Blog
+{% endif %}
 {% endblock %}
 
 {% block content %}
-  <div class="entry">
-    <table>
-      <caption>pub_date_placeholder</caption>
+{% if entry %}
+<div class="entry">
+  <table>
+    <caption>{{entry.pub_date}}</caption>
+    <tbody>
       <tr>
-        <td>{{title}}</td>
-        <td>{{body}}</td>
+        <td>{{entry.title}}</td>
       </tr>
-    </table>
-  </div>
+      <tr>
+        <td>{{entry.body}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endif %}
 {% endblock %}

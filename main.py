@@ -42,10 +42,10 @@ def fIndex():
 
 @app.route('/blog')
 def fBlog():
-    if Post.query.all() == True:
+    try:
         lPosts = Post.query.order_by(Post.pub_date.desc()).all()
         return render_template("blog.html", posts=lPosts)
-    else:
+    except KeyError:
         return redirect("/newpost")
 
 @app.route('/newpost', methods=["GET", "POST"])
@@ -74,17 +74,15 @@ def fNewPost():
             entry = Post(title, body)
             db.session.add(entry)
             db.session.commit()
-
-            if goto == "home":
+            if goto == "blog":
                 return redirect("/blog")
             else:
                 return redirect("/entry")
 
-
-
 @app.route("/entry")
 def fEntry():
-    return render_template("entry.html")
+    entry = Post.query.order_by(Post.id.desc()).first()
+    return render_template("entry.html", entry=entry)
 
 
 if __name__ == '__main__':
