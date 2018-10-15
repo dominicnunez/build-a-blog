@@ -63,11 +63,11 @@ def fNewPost():
             return render_template("newpost.html")
 
         elif title == "" and body != "":
-            flash("You must include title!")
+            flash("You must include a title!")
             return render_template("newpost.html", body=body)
         
         elif body == "" and title != "":
-            flash("You must include body!")
+            flash("You must include a body!")
             return render_template("newpost.html", title=title)
         
         elif title != "" and body != "":
@@ -77,11 +77,13 @@ def fNewPost():
             if goto == "blog":
                 return redirect("/blog")
             else:
-                return redirect("/entry")
+                entry = Post.query.order_by(Post.id.desc()).first()
+                return redirect("/entry?id=" + str(entry.id))
 
 @app.route("/entry")
 def fEntry():
-    entry = Post.query.order_by(Post.id.desc()).first()
+    post_id = request.args.get('id')
+    entry = Post.query.filter_by( id=post_id).first()
     return render_template("entry.html", entry=entry)
 
 
