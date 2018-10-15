@@ -30,19 +30,22 @@ class Blog(db.Model):
 
 # If either the blog title or blog body is left empty in the new post form, the form is rendered again, with a helpful error message and any previously-entered content in the same form inputs.
 @app.route("/")
-def index():
+def fIndex():
     return redirect('/blog')
 
 @app.route('/blog')
-def blog():
-    return render_template("blog.html")
+def fBlog():
+    if Blog.query.all() == True:
+        return render_template("blog.html")
+    else:
+        return redirect("/newpost")
 
 @app.route('/newpost', methods=["GET", "POST"])
-def newPost():
+def fNewPost():
     return render_template("newpost.html")
 
 @app.route("/entry")
-def entry():
+def fEntry():
     return render_template("entry.html")
 
 
