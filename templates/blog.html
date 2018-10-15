@@ -4,8 +4,18 @@
 There's That Blog
 {% endblock %}
 
-{% block body %}
-  <div>
-    
-  </div>
+{% block content %}
+
+{% for entry in posts %}
+<div class="entry">
+  <table>
+    <caption>{{entry.pub_date}}</caption>
+    <tr>
+      <td>{{entry.title}}</td>
+      <td>{{entry.body}}</td>
+    </tr>
+  </table>
+</div>
+{% endfor %}
+
 {% endblock %}

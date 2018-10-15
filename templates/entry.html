@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %}
-{{ title }}
+{{title}}
 {% endblock %}
 
 {% block content %}
-  <div>
+  <div class="entry">
+    <table>
+      <caption>pub_date_placeholder</caption>
+      <tr>
+        <td>{{title}}</td>
+        <td>{{body}}</td>
+      </tr>
+    </table>
   </div>
 {% endblock %}
