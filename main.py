@@ -29,15 +29,21 @@ class Blog(db.Model):
 # In your base.html template, you have some navigation links that link to the main blog page and to the add new blog page.
 
 # If either the blog title or blog body is left empty in the new post form, the form is rendered again, with a helpful error message and any previously-entered content in the same form inputs.
-@app.route('/blog', methods=['POST', 'GET'])
+@app.route("/")
 def index():
+    return redirect('/blog')
 
-    if request.method == 'POST':
+@app.route('/blog')
+def blog():
+    return render_template("blog.html")
 
+@app.route('/newpost', methods=["GET", "POST"])
+def newPost():
+    return render_template("newpost.html")
 
-
-@app.route('/newpost', methods=['POST'])
-
+@app.route("/entry")
+def entry():
+    return render_template("entry.html")
 
 
 if __name__ == '__main__':
