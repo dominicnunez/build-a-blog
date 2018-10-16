@@ -43,8 +43,13 @@ def fIndex():
 @app.route('/blog')
 def fBlog():
     try:
-        lPosts = Post.query.order_by(Post.pub_date.desc()).all()
-        return render_template("blog.html", posts=lPosts)
+        post_id = request.args.get('id')
+        entry = Post.query.filter_by(id=post_id).first()
+        if post_id != None:
+            return render_template("entry.html", entry=entry)
+        else:
+            lPosts = Post.query.order_by(Post.pub_date.desc()).all()
+            return render_template("blog.html", posts=lPosts)
     except KeyError:
         return redirect("/newpost")
 
@@ -78,13 +83,7 @@ def fNewPost():
                 return redirect("/blog")
             else:
                 entry = Post.query.order_by(Post.id.desc()).first()
-                return redirect("/entry?id=" + str(entry.id))
-
-@app.route("/entry")
-def fEntry():
-    post_id = request.args.get('id')
-    entry = Post.query.filter_by( id=post_id).first()
-    return render_template("entry.html", entry=entry)
+                return redirect("/blog?id=" + str(entry.id))
 
 
 if __name__ == '__main__':
