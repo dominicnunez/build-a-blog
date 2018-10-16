@@ -5,21 +5,26 @@ There's That Blog
 {% endblock %}
 
 {% block content %}
+
+<h1>
+  There's That Blog
+</h1>
+
 {% if posts %}
 {% for entry in posts %}
+
 <div class="entry">
-  <table>
-    <caption>{{entry.pub_date}}</caption>
-    <tbody>
-      <tr>
-        <td><a href="/entry?id={{entry.id}}">{{entry.title}}</a></td>
-      </tr>
-      <tr>
-        <td>{{entry.body}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <h2>
+    <a href="/entry?id={{entry.id}}">{{entry.title}}</a>
+  </h2>
+  <h3>
+    {{entry.pub_date}}
+  </h3>
+  <p>
+    {{entry.body}}
+  </p>
 </div>
+
 {% endfor %}
 {% endif %}
 {% endblock %}
